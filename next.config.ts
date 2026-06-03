@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  serverExternalPackages: ["winston", "winston-daily-rotate-file"],
 };
 
 export default nextConfig;

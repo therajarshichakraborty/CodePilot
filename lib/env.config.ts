@@ -3,9 +3,9 @@ import { z } from "zod";
 import logger from "./logger.config";
 
 const envSchema = z.object({
-  //   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
-  //   PORT: z.coerce.number().default(4000),
-  //   POSTGRES_DATABASE_URL: z.coerce.string().min(1),
+  NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
+  PORT: z.coerce.number().default(4000),
+  DATABASE_URL: z.coerce.string().min(1),
   //   JWT_ACCESS_SECRET: z.coerce.string().min(16),
   //   JWT_ACCESS_EXPIRES_IN: z.coerce.string(),
   //   JWT_REFRESH_SECRET: z.coerce.string().min(16),

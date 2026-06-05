@@ -42,3 +42,5 @@ next-env.d.ts
 
 # winston logs
 /logs
+
+/lib/generated/prisma

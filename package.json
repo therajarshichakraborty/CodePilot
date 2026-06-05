@@ -21,6 +21,7 @@
     "postinstall:fix": "pnpm exec lint-staged -a"
   },
   "dependencies": {
+    "@auth/prisma-adapter": "^2.11.2",
     "@base-ui/react": "^1.5.0",
     "@prisma/client": "6.19",
     "class-variance-authority": "^0.7.1",
@@ -32,6 +33,7 @@
     "input-otp": "^1.4.2",
     "lucide-react": "^1.17.0",
     "next": "16.2.7",
+    "next-auth": "^5.0.0-beta.31",
     "next-themes": "^0.4.6",
     "prettier": "^3.8.3",
     "radix-ui": "^1.4.3",

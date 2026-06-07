@@ -6,12 +6,11 @@ const envSchema = z.object({
   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
   PORT: z.coerce.number().default(4000),
   DATABASE_URL: z.coerce.string().min(1),
-  AUTH_GITHUB_ID:z.coerce.string(),
-  AUTH_GITHUB_SECRET:z.coerce.string(),
-  AUTH_GOOGLE_ID:z.coerce.string(),
-  AUTH_GOOGLE_SECRET:z.coerce.string(),
-
-
+  AUTH_GITHUB_ID: z.coerce.string(),
+  AUTH_GITHUB_SECRET: z.coerce.string(),
+  AUTH_GOOGLE_ID: z.coerce.string(),
+  AUTH_GOOGLE_SECRET: z.coerce.string(),
+ BETTER_AUTH_SECRET: z.coerce.string(),
 
   //   JWT_ACCESS_SECRET: z.coerce.string().min(16),
   //   JWT_ACCESS_EXPIRES_IN: z.coerce.string(),

@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 CodePilot
 
-## Getting Started
+> **Next-Generation AI-Powered Collaborative Web Code Editor**
 
-First, run the development server:
+CodePilot is a modern, premium, web-based code editor featuring real-time AI assistance, fluid view transitions, elegant custom typography, and a glassmorphic aesthetic. It is built to make web-based coding fast, interactive, and beautiful.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+![CodePilot Sign-in Page Preview](public/image%20copy.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ✨ Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **🧠 Real-Time AI Assistance**: Write, debug, and optimize your web applications directly in the editor.
+- **🎨 Fluid Theme Transitions**: Expanding circle-wipe animations using the native browser **View Transitions API** combined with synchronous state management.
+- **✍️ Premium Custom Typography**: Styled with the clean and legible **Patrick Hand** handwriting Google Font for a distinct and personal design style.
+- **🧼 Modern Glassmorphism Layout**: Embedded glowing backdrops, dark-backdrop card styles, and high-fidelity OAuth buttons.
+- **🎯 Global Pointer Cursor**: Smooth unified interaction styling across all elements on the screen.
+- **⚡ Next.js 16 & React 19 Power**: Bootstrapped with the latest features of React 19, Bun, and Tailwind CSS v4.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Library**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **State & Theme**: [next-themes](https://github.com/pacocoursey/next-themes)
+- **Runtime & Package Manager**: [Bun](https://bun.sh/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚀 Getting Started
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You will need [Bun](https://bun.sh/) installed on your machine.
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/therajarshichakraborty/CodePilot.git
+   cd CodePilot
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   bun install
+   ```
+
+3. **Run the development server**:
+   ```bash
+   bun run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to experience CodePilot.
+
+---
+
+## 👤 Author
+
+<p align="left">
+  <img src="public/image.png" width="120" height="120" style="border-radius: 50%; border: 3px solid #3b82f6;" alt="Rajarshi Chakraborty" />
+</p>
+
+### **Rajarshi Chakraborty (Arghya)**
+*Lead Developer & Creator of CodePilot*
+
+- **Email**: [rajarshi29032005@gmail.com](mailto:rajarshi29032005@gmail.com)
+- **GitHub**: [@therajarshichakraborty](https://github.com/therajarshichakraborty)
+
+---
+
+## 📄 License
+
+This project is proprietary. All rights reserved. Created for developers who love clean design.

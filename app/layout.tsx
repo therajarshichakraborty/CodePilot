@@ -29,8 +29,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${patrickHand.variable} ${geistMono.variable} h-full cursor-pointer `}
-      suppressHydrationWarning
-    >
+      suppressHydrationWarning>
       <body className="min-h-full flex flex-col cursor-pointer">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <AnimatedThemeToggler className="top-4 right-4 z-10 absolute " />

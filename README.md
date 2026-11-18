@@ -38,17 +38,20 @@ You will need [Bun](https://bun.sh/) installed on your machine.
 ### Installation
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/therajarshichakraborty/CodePilot.git
    cd CodePilot
    ```
 
 2. **Install dependencies**:
+
    ```bash
    bun install
    ```
 
 3. **Run the development server**:
+
    ```bash
    bun run dev
    ```
@@ -64,7 +67,8 @@ You will need [Bun](https://bun.sh/) installed on your machine.
 </p>
 
 ### **Rajarshi Chakraborty (Arghya)**
-*Lead Developer & Creator of CodePilot*
+
+_Lead Developer & Creator of CodePilot_
 
 - **Email**: [rajarshi29032005@gmail.com](mailto:rajarshi29032005@gmail.com)
 - **GitHub**: [@therajarshichakraborty](https://github.com/therajarshichakraborty)

@@ -4,6 +4,10 @@ generator client {
 
 datasource db {
   provider = "mongodb"
+<<<<<<< HEAD
+=======
+  // url      = env("DATABASE_URL")
+>>>>>>> 3334ed5925bc8f4e76f54fd9564a1812bfe588e1
 }
 
 

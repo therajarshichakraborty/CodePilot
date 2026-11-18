@@ -1,10 +1,8 @@
-import * as React from "react";
+import type * as React from "react";
+
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main
-      className="flex justify-center items-center h-screen flex-col cursor-pointer"
-      suppressHydrationWarning
-    >
+    <main className="bg-background flex min-h-screen w-full items-center justify-center px-6 py-16 antialiased">
       {children}
     </main>
   );

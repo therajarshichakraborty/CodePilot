@@ -1,109 +1,46 @@
+import type { UserRole } from "@prisma/client";
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
+
 import authConfig from "./auth.config";
 import { db } from "./lib/db.config";
-import { getAccountByUserId, getUserById } from "./modules/auth/actions";
 import { env } from "./lib/env";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
-  callbacks: {
-    async signIn({ user, account, profile }) {
-      if (!user || !account) return false;
+  ...authConfig,
+  adapter: PrismaAdapter(db),
+  session: { strategy: "jwt" },
+  secret: env.AUTH_SECRET,
 
-      const existingUser = await db.user.findUnique({
-        where: { email: user.email! },
-      });
-
-      if (!existingUser) {
-        const newUser = await db.user.create({
-          data: {
-            email: user.email!,
-            name: user.name,
-            image: user.image,
-
-            accounts: {
-              // @ts-ignore
-              create: {
-                type: account.type,
-                provider: account.provider,
-                providerAccountId: account.providerAccountId,
-                refreshToken: account.refresh_token,
-                accessToken: account.access_token,
-                expiresAt: account.expires_at,
-                tokenType: account.token_type,
-                scope: account.scope,
-                idToken: account.id_token,
-                sessionState: account.session_state,
-              },
-            },
-          } as any,
-        });
-
-        if (!newUser) return false;
-      } else {
-        const existingAccount = await db.account.findUnique({
-          where: {
-            provider_providerAccountId: {
-              provider: account.provider,
-              providerAccountId: account.providerAccountId,
-            },
-          },
-        });
-
-        if (!existingAccount) {
-          await db.account.create({
-            data: {
-              userId: existingUser.id,
-              type: account.type,
-              provider: account.provider,
-              providerAccountId: account.providerAccountId,
-              refreshToken: account.refresh_token,
-              accessToken: account.access_token,
-              expiresAt: account.expires_at,
-              tokenType: account.token_type,
-              scope: account.scope,
-              idToken: account.id_token,
-              // @ts-ignore
-              sessionState: account.session_state,
-            },
-          });
-        }
+  events: {
+    // Store the GitHub username the first time an account is linked.
+    async linkAccount({ user, profile }) {
+      const login = (profile as { login?: string } | undefined)?.login;
+      if (user.id && login) {
+        await db.user.update({ where: { id: user.id }, data: { githubUsername: login } });
       }
-
-      return true;
     },
+  },
 
-    async jwt({ token, user, account }) {
-      if (!token.sub) return token;
-      const existingUser = await getUserById(token.sub);
-
-      if (!existingUser) return token;
-
-      const exisitingAccount = await getAccountByUserId(existingUser.id);
-
-      token.name = existingUser.name;
-      token.email = existingUser.email;
-      //@ts-ignore
-      token.role = existingUser.role;
-
+  callbacks: {
+    async jwt({ token, user }) {
+      // `user` is only present on sign-in; refresh role from the DB then.
+      if (user?.id) {
+        const dbUser = await db.user.findUnique({
+          where: { id: user.id },
+          select: { role: true },
+        });
+        token.role = dbUser?.role ?? "USER";
+      }
       return token;
     },
 
     async session({ session, token }) {
-      if (token.sub && session.user) {
+      if (session.user && token.sub) {
         session.user.id = token.sub;
+        session.user.role = token.role as UserRole;
       }
-
-      if (token.sub && session.user) {
-        session.user.role = token.role;
-      }
-
       return session;
     },
   },
-
-  secret: env.AUTH_SECRET,
-  adapter: PrismaAdapter(db),
-  session: { strategy: "jwt" },
-  ...authConfig,
 });

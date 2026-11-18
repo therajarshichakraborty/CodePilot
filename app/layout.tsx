@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Patrick_Hand, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+import { SessionProvider } from "next-auth/react";
 
-const patrickHand = Patrick_Hand({
-  weight: "400",
-  variable: "--font-patrick-hand",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
@@ -28,14 +28,21 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${patrickHand.variable} ${geistMono.variable} h-full cursor-pointer `}
+      className={`${geistSans.variable} ${geistMono.variable} h-full cursor-pointer `}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col cursor-pointer">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <AnimatedThemeToggler className="top-4 right-4 z-10 absolute " />
-          {children}
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <AnimatedThemeToggler className="top-4 right-4 z-10 absolute " />
+            {children}
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );

@@ -1,11 +1,16 @@
-import Login04 from "@/components/login-2";
+import type { Metadata } from "next";
 
-const Page = () => {
-  return (
-    <div>
-      <Login04 />
-    </div>
-  );
+import { SignInCard } from "@/modules/auth/components/sign-in-card";
+
+export const metadata: Metadata = {
+  title: "Sign in · CodePilot",
 };
 
-export default Page;
+type PageProps = {
+  searchParams: Promise<{ error?: string }>;
+};
+
+export default async function SignInPage({ searchParams }: PageProps) {
+  const { error } = await searchParams;
+  return <SignInCard error={error} />;
+}

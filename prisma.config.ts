@@ -1,6 +1,4 @@
-import dotenv from "dotenv";
-dotenv.config({ path: ".env" });
-
+import "dotenv/config";
 import { defineConfig, env } from "prisma/config";
 
 export default defineConfig({

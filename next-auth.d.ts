@@ -1,20 +1,24 @@
-import { UserRole } from "@prisma/client";
-import NextAuth, { type DefaultSession } from "next-auth";
+// Unused for now: these types describe the `id`/`role` fields added by the
+// jwt/session callbacks in auth.ts, which are commented out. Uncomment both together.
 
-export type ExtendedUser = DefaultSession["user"] & {
-  role: UserRole;
-};
+// import type { UserRole } from "@prisma/client";
+// import type { DefaultSession } from "next-auth";
+//
+// export type ExtendedUser = DefaultSession["user"] & {
+//   id: string;
+//   role: UserRole;
+// };
+//
+// declare module "next-auth" {
+//   interface Session {
+//     user: ExtendedUser;
+//   }
+// }
+//
+// declare module "@auth/core/jwt" {
+//   interface JWT {
+//     role: UserRole;
+//   }
+// }
 
-declare module "next-auth" {
-  interface Session {
-    user: ExtendedUser;
-  }
-}
-
-import { JWT } from "next-auth/jwt";
-
-declare module "next-auth/jwt" {
-  interface JWT {
-    role: UserRole;
-  }
-}
+export {};

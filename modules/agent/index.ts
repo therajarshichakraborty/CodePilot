@@ -1,2 +1,1 @@
-"use server"
-
+"use server";

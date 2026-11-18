@@ -6,13 +6,14 @@
 
 export const publicRoutes: string[] = [];
 
-/**
- * An Array of routes that are protected
- * These routes require authentication
- * @type {string[]}
- */
-
-export const protectedRoutes: string[] = ["/"];
+// Unused: proxy.ts treats every route that isn't public or an auth route as protected.
+// /**
+//  * An Array of routes that are protected
+//  * These routes require authentication
+//  * @type {string[]}
+//  */
+//
+// export const protectedRoutes: string[] = ["/"];
 
 /**
  * An Array of routes that are accessible to the public

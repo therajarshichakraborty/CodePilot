@@ -1,4 +1,4 @@
-import type { UserRole } from "@prisma/client";
+// import type { UserRole } from "@prisma/client"; // only used by the commented-out callbacks
 import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
@@ -9,6 +9,7 @@ import { env } from "./lib/env";
 export const { auth, handlers, signIn, signOut } = NextAuth({
   ...authConfig,
   adapter: PrismaAdapter(db),
+  // Required: proxy.ts runs without the Prisma adapter and can only read JWT sessions.
   session: { strategy: "jwt" },
   secret: env.AUTH_SECRET,
 
@@ -22,25 +23,27 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
     },
   },
 
-  callbacks: {
-    async jwt({ token, user }) {
-      // `user` is only present on sign-in; refresh role from the DB then.
-      if (user?.id) {
-        const dbUser = await db.user.findUnique({
-          where: { id: user.id },
-          select: { role: true },
-        });
-        token.role = dbUser?.role ?? "USER";
-      }
-      return token;
-    },
-
-    async session({ session, token }) {
-      if (session.user && token.sub) {
-        session.user.id = token.sub;
-        session.user.role = token.role as UserRole;
-      }
-      return session;
-    },
-  },
+  // Unused for now: nothing reads `session.user.id` or `session.user.role` yet.
+  // Uncomment (together with the types in next-auth.d.ts) when you need roles/ids.
+  // callbacks: {
+  //   async jwt({ token, user }) {
+  //     // `user` is only present on sign-in; refresh role from the DB then.
+  //     if (user?.id) {
+  //       const dbUser = await db.user.findUnique({
+  //         where: { id: user.id },
+  //         select: { role: true },
+  //       });
+  //       token.role = dbUser?.role ?? "USER";
+  //     }
+  //     return token;
+  //   },
+  //
+  //   async session({ session, token }) {
+  //     if (session.user && token.sub) {
+  //       session.user.id = token.sub;
+  //       session.user.role = token.role as UserRole;
+  //     }
+  //     return session;
+  //   },
+  // },
 });

@@ -2,7 +2,7 @@
 
 import { auth } from "@/auth";
 import { db } from "@/lib/db.config";
-import logger from "@/lib/logger.config";
+import logger from "@/lib/logger";
 
 export const getUserById = async (id: string) => {
   try {

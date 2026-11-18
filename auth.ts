@@ -3,7 +3,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import authConfig from "./auth.config";
 import { db } from "./lib/db.config";
 import { getAccountByUserId, getUserById } from "./modules/auth/actions";
-import { env } from "./lib/env.config";
+import { env } from "./lib/env";
 
 export const { auth, handlers, signIn, signOut } = NextAuth({
   callbacks: {
@@ -83,7 +83,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 
       token.name = existingUser.name;
       token.email = existingUser.email;
-      // @ts-ignore
+      //@ts-ignore
       token.role = existingUser.role;
 
       return token;
